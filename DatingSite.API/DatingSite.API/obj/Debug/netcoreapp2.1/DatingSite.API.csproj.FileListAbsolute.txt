@@ -1,0 +1,14 @@
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.deps.json
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.runtimeconfig.json
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.runtimeconfig.dev.json
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.dll
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.pdb
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.csprojAssemblyReference.cache
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.csproj.CoreCompileInputs.cache
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorAssemblyInfo.cache
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorAssemblyInfo.cs
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.AssemblyInfoInputs.cache
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.AssemblyInfo.cs
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorTargetAssemblyInfo.cache
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.dll
+E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.pdb
