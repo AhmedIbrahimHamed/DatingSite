@@ -13,6 +13,8 @@ namespace DatingSite.API.Data {
 
         public DbSet<Value> Values { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Value>()
                 .HasData(new Value() {
