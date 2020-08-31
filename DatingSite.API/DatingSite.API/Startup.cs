@@ -27,6 +27,7 @@ namespace DatingSite.API {
             services.AddDbContext<DataContext>(o => o.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

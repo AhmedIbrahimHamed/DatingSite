@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatingSite.API.Data {
-    interface IAuthRepository {
+    public interface IAuthRepository {
 
         Task<User> Register(User user, string password);
 
