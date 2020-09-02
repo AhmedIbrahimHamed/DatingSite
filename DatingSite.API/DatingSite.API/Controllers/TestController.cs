@@ -1,5 +1,6 @@
 ﻿using DatingSite.API.Data;
 using DatingSite.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatingSite.API.Controllers {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase {
@@ -24,6 +26,7 @@ namespace DatingSite.API.Controllers {
             return Ok(values);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTestData(int id) {
             Value value = await _context.Values.FirstOrDefaultAsync(v => v.Id == id);
