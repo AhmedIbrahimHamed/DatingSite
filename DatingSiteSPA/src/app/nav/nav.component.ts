@@ -21,7 +21,7 @@ export class NavComponent  {
     this.authService.login(loginForm.value).subscribe(next => {
       console.log('Logged in successfully');
     }, error => {
-      console.log('Failed to login');
+      console.log(error);
     });
   }
 
