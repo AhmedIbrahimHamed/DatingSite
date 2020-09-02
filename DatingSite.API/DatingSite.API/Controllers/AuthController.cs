@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using DatingSite.API.Data;
 using DatingSite.API.Dtos;
 using DatingSite.API.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DatingSite.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase {
@@ -27,6 +28,7 @@ namespace DatingSite.API.Controllers
             _configuration = configuration;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserForRegisterDto userForRegisterDto) {
 
@@ -48,7 +50,7 @@ namespace DatingSite.API.Controllers
             return StatusCode(201);
         }
 
-
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto) {
 
