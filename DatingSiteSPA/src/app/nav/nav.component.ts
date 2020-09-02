@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent  {
 
-  model: any = {};
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  login() {
-    console.log(this.model);
+  login(loginForm: NgForm) {
+    console.log(`username : ${loginForm.value.username} , password : ${loginForm.value.password}`);
   }
 
 }

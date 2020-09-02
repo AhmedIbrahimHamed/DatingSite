@@ -12,3 +12,17 @@ E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1
 E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorTargetAssemblyInfo.cache
 E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.dll
 E:\C#\WorkSpace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.pdb
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.deps.json
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.runtimeconfig.json
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.runtimeconfig.dev.json
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.dll
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\bin\Debug\netcoreapp2.1\DatingSite.API.pdb
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.csprojAssemblyReference.cache
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.csproj.CoreCompileInputs.cache
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorAssemblyInfo.cache
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorAssemblyInfo.cs
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.AssemblyInfoInputs.cache
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.AssemblyInfo.cs
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.RazorTargetAssemblyInfo.cache
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.dll
+E:\Angular\Angular workspace\DatingSite\DatingSite.API\DatingSite.API\obj\Debug\netcoreapp2.1\DatingSite.API.pdb

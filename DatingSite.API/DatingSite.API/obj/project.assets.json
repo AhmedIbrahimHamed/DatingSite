@@ -12534,11 +12534,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\C#\\WorkSpace\\DatingSite\\DatingSite.API\\DatingSite.API\\DatingSite.API.csproj",
+      "projectUniqueName": "E:\\Angular\\Angular workspace\\DatingSite\\DatingSite.API\\DatingSite.API\\DatingSite.API.csproj",
       "projectName": "DatingSite.API",
-      "projectPath": "E:\\C#\\WorkSpace\\DatingSite\\DatingSite.API\\DatingSite.API\\DatingSite.API.csproj",
+      "projectPath": "E:\\Angular\\Angular workspace\\DatingSite\\DatingSite.API\\DatingSite.API\\DatingSite.API.csproj",
       "packagesPath": "C:\\Users\\Ahmed\\.nuget\\packages\\",
-      "outputPath": "E:\\C#\\WorkSpace\\DatingSite\\DatingSite.API\\DatingSite.API\\obj\\",
+      "outputPath": "E:\\Angular\\Angular workspace\\DatingSite\\DatingSite.API\\DatingSite.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
