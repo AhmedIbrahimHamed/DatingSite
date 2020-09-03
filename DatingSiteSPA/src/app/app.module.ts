@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,6 +17,7 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_gaurds/auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,12 +33,12 @@ import { appRoutes } from './routes';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    CollapseModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes)],
   providers: [AuthService,
     ErrorInterceptorProvider,
-    AlertifyService],
+    AlertifyService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

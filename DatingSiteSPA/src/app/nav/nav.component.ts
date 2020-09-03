@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/Alertify.service';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,9 +13,8 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class NavComponent  {
-  isCollapsed = false;
-
-  constructor(public authService: AuthService, private alertify: AlertifyService) { }
+  constructor(public authService: AuthService,
+              private alertify: AlertifyService, private router: Router) { }
 
   loggedIn() {
     return this.authService.loggedIn();
@@ -26,12 +26,15 @@ export class NavComponent  {
       this.alertify.success('Logged in successfully');
     }, error => {
       this.alertify.error(error);
+    }, () => {
+      this.router.navigate(['/members']);
     });
   }
 
   logout() {
     localStorage.removeItem('token');
     this.alertify.message('Logged out');
+    this.router.navigate(['/home']);
   }
 
 }
