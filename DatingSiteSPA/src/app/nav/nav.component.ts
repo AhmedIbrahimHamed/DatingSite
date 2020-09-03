@@ -10,11 +10,10 @@ import { AlertifyService } from '../_services/Alertify.service';
 })
 export class NavComponent  {
 
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService) { }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   login(loginForm: NgForm) {
