@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200904160543_ExtendedUsersTableAndAddedPhotosTable.Designer.cs" />
     <Compile Remove="Migrations\20200905040850_ExtendedUsersTableAndAddedPhotosTable.cs" />
     <Compile Remove="Migrations\20200905040850_ExtendedUsersTableAndAddedPhotosTable.Designer.cs" />
+    <Compile Remove="Migrations\20200905055932_newMig.cs" />
+    <Compile Remove="Migrations\20200905055932_newMig.Designer.cs" />
+    <Compile Remove="Migrations\20200905060020_AddedColumnUser.cs" />
+    <Compile Remove="Migrations\20200905060020_AddedColumnUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
