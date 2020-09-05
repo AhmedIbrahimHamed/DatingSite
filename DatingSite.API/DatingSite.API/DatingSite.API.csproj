@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200904160543_ExtendedUsersTableAndAddedPhotosTable.cs" />
+    <Compile Remove="Migrations\20200904160543_ExtendedUsersTableAndAddedPhotosTable.Designer.cs" />
+    <Compile Remove="Migrations\20200905040850_ExtendedUsersTableAndAddedPhotosTable.cs" />
+    <Compile Remove="Migrations\20200905040850_ExtendedUsersTableAndAddedPhotosTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -33,7 +33,9 @@ namespace DatingSite.API {
             services.AddDbContext<DataContext>(o => o.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(o => {
                     o.TokenValidationParameters = new TokenValidationParameters {
@@ -46,7 +48,7 @@ namespace DatingSite.API {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder) {
 
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -66,6 +68,7 @@ namespace DatingSite.API {
             }
 
             //app.UseHttpsRedirection();
+            //seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() );
             app.UseAuthentication();
             app.UseMvc();
