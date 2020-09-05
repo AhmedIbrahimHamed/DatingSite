@@ -13,12 +13,13 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/Alertify.service';
-import { MemberListComponent } from './member-list/member-list.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_gaurds/auth.guard';
 import { UserService } from './_services/user.service';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 
 @NgModule({
   declarations: [
@@ -26,21 +27,26 @@ import { UserService } from './_services/user.service';
     NavComponent,
     HomeComponent,
     RegisterComponent,
-      MemberListComponent,
-      ListsComponent,
-      MessagesComponent
-   ],
-  imports: [BrowserModule,
+    MemberListComponent,
+    ListsComponent,
+    MessagesComponent,
+    MemberCardComponent
+  ],
+  imports: [
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoutes)],
-  providers: [AuthService,
+    RouterModule.forRoot(appRoutes),
+  ],
+  providers: [
+    AuthService,
     ErrorInterceptorProvider,
     AlertifyService,
     AuthGuard,
-    UserService],
-  bootstrap: [AppComponent]
+    UserService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
