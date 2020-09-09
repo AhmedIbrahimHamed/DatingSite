@@ -30,6 +30,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver.ts';
 import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.guard.ts';
 import { PhotoEditerComponent } from './members/photo-editer/photo-editer.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -55,6 +56,7 @@ export function getToken() {
     FormsModule,
     BrowserAnimationsModule,
     NgxGalleryModule,
+    FileUploadModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
