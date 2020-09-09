@@ -1,28 +1,118 @@
-<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
 
   <div class="form-group">
+    <label class="control-label text-bold" style="margin-right:10px">Gender: </label>
+    <label class="radio-inline">
+      <input class="mr-2" type="radio" value="male" formControlName="gender">Male
+    </label>
+    <label class="radio-inline ml-3">
+      <input class="mr-2" type="radio" value="female" formControlName="gender">Female
+    </label>
+  </div>
+
+  <div class="form-group">
     <input type="text"
       class="form-control"
-      required 
       name="username" 
       placeholder="Username"
-      ngModel>
+      formControlName="username">
+      
+    <div class="help-block text-danger mt-1"
+      *ngIf="!registerForm.get('username').valid &&
+      registerForm.get('username').touched">Please choose a valid username!</div>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control"
+      name="knownAs"
+      placeholder="Known as"
+      formControlName="knownAs">
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('knownAs').hasError('required') &&
+      registerForm.get('knownAs').touched">Known as field is required</div>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control"
+      placeholder="Date of Birth"
+      name="dateOfBirth"
+      formControlName="dateOfBirth"
+      type="text"
+      bsDatepicker
+      [bsConfig]="bsConfig">
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('dateOfBirth').hasError('required') &&
+      registerForm.get('dateOfBirth').touched">Date of birth field is required</div>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control"
+      name="city"
+      placeholder="City"
+      formControlName="city">
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('city').hasError('required') &&
+      registerForm.get('city').touched">City field is required</div>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control"
+      name="country"
+      placeholder="Country"
+      formControlName="country">
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('country').hasError('required') &&
+      registerForm.get('country').touched">Country field is required</div>
   </div>
 
   <div class="form-group">
     <input type="password"
       class="form-control"
-      required 
       name="password"
       placeholder="Password"
-      ngModel>
+      formControlName="password">
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('password').hasError('required') &&
+      registerForm.get('password').touched">Password is required!</div>
+      
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('password').hasError('minlength') &&
+      registerForm.get('password').touched">Password must be at least 4 characters!</div>
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('password').hasError('maxlength') &&
+      registerForm.get('password').touched">Password cannot exceed 8 characters!</div>
+  </div>
+
+  <div class="form-group">
+    <input type="password"
+      class="form-control"
+      name="confirmPassword"
+      placeholder="confirm Password"
+      formControlName="confirmPassword">
+      
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.get('confirmPassword').hasError('required') &&
+      registerForm.get('confirmPassword').touched">Confirmed Password is required!</div>
+
+      <div class="help-block text-danger mt-1"
+      *ngIf="registerForm.hasError('mismatch') &&
+      registerForm.get('confirmPassword').touched">Confirmed Password and Password must match!</div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success mr-2" type="submit">Register</button>
+    <button class="btn btn-success mr-2" [disabled]="!registerForm.valid" type="submit">Register</button>
     <button class="btn btn-danger" (click)="cancel()" type="button">Cancel</button>
   </div>
   
 </form>
+
+<p>Form value: {{registerForm.value | json}}</p>
+<p>Form status: {{registerForm.status | json}}</p>
