@@ -1,0 +1,7 @@
+img.img-thumbnail{
+  display: block;
+  height: 100px;
+  width: auto;
+  margin: auto;
+  box-sizing: border-box;
+}

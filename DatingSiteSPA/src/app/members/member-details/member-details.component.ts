@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, HostListener } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/Alertify.service';
 import { ActivatedRoute } from '@angular/router';
@@ -36,6 +36,11 @@ export class MemberDetailsComponent implements OnInit {
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
         preview: false
+      },
+      {
+        breakpoint: 850,
+        width: '400px',
+        height: '400px'
       }
     ];
 
