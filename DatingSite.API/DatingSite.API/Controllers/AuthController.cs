@@ -43,14 +43,16 @@ namespace DatingSite.API.Controllers
                 return BadRequest("Username already exist");
             }
 
-            var userToCreate = new User() {
-                Username = userForRegisterDto.Username
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 
+            var userToReturn = _mapper.Map<UserForDetailsDto>(createdUser);
+
             // Will return CreatedAt when implment Get actions
-            return StatusCode(201);
+            return CreatedAtRoute("GetUser",
+                new { Controller = "Users", id = createdUser.Id },
+                userToReturn);
         }
 
         [AllowAnonymous]
