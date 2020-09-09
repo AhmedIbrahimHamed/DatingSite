@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingSite.API.Data;
 using DatingSite.API.Dtos;
 using DatingSite.API.Models;
@@ -22,10 +23,12 @@ namespace DatingSite.API.Controllers
 
         private readonly IAuthRepository _authRepository;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository authRepository, IConfiguration configuration) {
+        public AuthController(IAuthRepository authRepository, IConfiguration configuration, IMapper mapper) {
             _authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
-            _configuration = configuration;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [AllowAnonymous]
@@ -80,8 +83,11 @@ namespace DatingSite.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            var user = _mapper.Map<UserForListDto>(useFromRepo);
+
             return Ok(new {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user
             });
         }
 

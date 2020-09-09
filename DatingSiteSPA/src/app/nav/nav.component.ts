@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/Alertify.service';
@@ -12,9 +12,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
-export class NavComponent  {
+export class NavComponent implements OnInit {
+  photoUrl: string;
+
   constructor(public authService: AuthService,
               private alertify: AlertifyService, private router: Router) { }
+
+
+  ngOnInit(): void {
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+  }
 
   loggedIn() {
     return this.authService.loggedIn();
@@ -33,6 +40,9 @@ export class NavComponent  {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.alertify.message('Logged out');
     this.router.navigate(['/home']);
   }

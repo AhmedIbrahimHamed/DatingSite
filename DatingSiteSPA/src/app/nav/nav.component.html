@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">Navbar</a>
+    <a class="navbar-brand" [routerLink]="['/home']">DatingSite</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item active" routerLinkActive="active">
@@ -16,6 +16,9 @@
     </ul>
   
     <div dropdown *ngIf="loggedIn()" class="dropdown">
+      <span class="mr-1">
+        <img src="{{photoUrl}}" alt="">
+      </span>
       <a dropdownToggle (click)="false" class="dropdown-toggle text-light">
         Welcome {{this.authService.decodedToken?.unique_name | titlecase}}
       </a>
