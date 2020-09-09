@@ -28,6 +28,7 @@ import { MemberDetailResolver } from './_resolvers/member-details.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver.ts';
+import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.guard.ts';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -71,7 +72,8 @@ export function getToken() {
     UserService,
     MemberDetailResolver,
     MemberListResolver,
-    MemberEditResolver
+    MemberEditResolver,
+    PreventUnsavedChanges
   ],
   bootstrap: [AppComponent],
 })

@@ -21,6 +21,8 @@ namespace DatingSite.API.Profiles {
             .ForMember(dest => dest.Age, opt => {
                 opt.MapFrom(d => d.DateOfBirth.CalculateAge());
             });
+
+            CreateMap<UserForUpdateDto, User>();
         }
 
     }
