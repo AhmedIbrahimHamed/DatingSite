@@ -34,6 +34,7 @@ namespace DatingSite.API {
             services.AddDbContext<DataContext>(o => o.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.Configure<CloudinarySettings>(_configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();

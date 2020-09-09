@@ -11,6 +11,8 @@ namespace DatingSite.API.Profiles {
 
         public PhotoProfile() {
             CreateMap<Photo, PhotoForDetailsDto>();
+            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto, Photo>();
         }
 
     }
