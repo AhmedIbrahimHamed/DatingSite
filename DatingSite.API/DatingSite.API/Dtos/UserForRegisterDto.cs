@@ -31,11 +31,11 @@ namespace DatingSite.API.Dtos {
 
         public DateTime CreatedAt { get; set; }
 
-        public DateTime LastActiveAt { get; set; }
+        public DateTime LastActive { get; set; }
 
         public UserForRegisterDto() {
             CreatedAt = DateTime.Now;
-            LastActiveAt = DateTime.Now;
+            LastActive = DateTime.Now;
         }
     }
 }
