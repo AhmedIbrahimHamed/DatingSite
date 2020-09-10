@@ -40,7 +40,17 @@ namespace DatingSite.API.Data {
         }
 
         public async Task<PagedList<User>> GetUsers(UserParams userParams) {
-            var users = _context.Users.Include(u => u.Photos);
+            // Filtering users of possible matches with gender and age.
+            var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+
+            var users = _context.Users.Include(i => i.Photos)
+                .Where(u => u.Id != userParams.UserId)
+                .Where(u => u.Gender == userParams.Gender)
+                .Where(u => u.DateOfBirth >= minDob
+                    && u.DateOfBirth <= maxDob)
+                .OrderByDescending(u => u.LastActive)
+                .AsQueryable();
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
