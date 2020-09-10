@@ -52,6 +52,17 @@ namespace DatingSite.API.Data {
                 .OrderByDescending(u => u.LastActive)
                 .AsQueryable();
 
+            if (!string.IsNullOrEmpty(userParams.OrderBy)) {
+                switch (userParams.OrderBy) {
+                    case "created":
+                        users = users.OrderByDescending(u => u.CreatedAt);
+                        break;
+                    default:
+                        users = users.OrderByDescending(u => u.LastActive);
+                        break;
+                }
+            }
+
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
 

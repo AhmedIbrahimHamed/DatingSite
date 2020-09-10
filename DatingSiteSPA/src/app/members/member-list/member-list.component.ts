@@ -4,6 +4,7 @@ import { UserService } from '../../_services/user.service';
 import { AlertifyService } from '../../_services/Alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-member-list',
@@ -12,6 +13,9 @@ import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
 })
 export class MemberListComponent implements OnInit {
   users: User[];
+  user: User = JSON.parse(localStorage.getItem('user'));
+  genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Female'}];
+  userParams: any = {};
   pagination: Pagination;
 
   constructor(private userService: UserService, private alertify: AlertifyService,
@@ -22,6 +26,10 @@ export class MemberListComponent implements OnInit {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
     });
+
+    this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
   }
 
   pageChanged(event: any): void {
@@ -29,14 +37,23 @@ export class MemberListComponent implements OnInit {
     this.loadUsers();
   }
 
+  resetFilter() {
+    this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
+    this.loadUsers();
+  }
+
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
+    this.userService.getUsers(this.pagination.currentPage.toString(),
+      this.pagination.itemsPerPage.toString(),
+      this.userParams)
     .subscribe((response: PaginatedResult<User[]>) => {
       this.users = response.result;
       this.pagination = response.pagination;
     }, error => {
       this.alertify.error(error);
-    })
+    });
   }
 
 }
