@@ -18,8 +18,8 @@ namespace DatingSite.API.Helpers {
         public PagedList(List<T> items, int count, int pageNumber, int pageSize) {
 
             TotalCount = count;
-            PageSize = PageSize;
-            CurrentPage = CurrentPage;
+            PageSize = pageSize;
+            CurrentPage = pageNumber;
             TotalPages = (int)Math.Ceiling(count / (double)PageSize);
             this.AddRange(items);
         }

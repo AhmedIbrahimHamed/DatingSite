@@ -1,4 +1,5 @@
-﻿using DatingSite.API.Models;
+﻿using DatingSite.API.Helpers;
+using DatingSite.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace DatingSite.API.Data {
 
         Task<bool> SaveAll();
 
-        Task<IEnumerable<User>> GetUsers();
+        Task<PagedList<User>> GetUsers(UserParams userParams);
 
         Task<User> GetUser(int id);
 
