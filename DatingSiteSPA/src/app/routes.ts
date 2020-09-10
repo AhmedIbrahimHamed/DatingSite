@@ -13,6 +13,7 @@ import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.guard.t
 import { HomeGuard } from './_gaurds/home.guard';
 
 export const appRoutes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent, canActivate: [HomeGuard]},
   { path: '',
     runGuardsAndResolvers: 'always',
@@ -27,5 +28,5 @@ export const appRoutes: Routes = [
       {path: 'lists', component: ListsComponent}
     ]
   },
-  { path: '**', redirectTo: '', pathMatch: 'full'}
+  { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
