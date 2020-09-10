@@ -13,6 +13,8 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MemberListResolver implements Resolve<User[]> {
+  pageNumber = '1';
+  pageSize = '5';
 
   constructor(private userService: UserService, private router: Router,
               private alertify: AlertifyService) { }
@@ -20,14 +22,14 @@ export class MemberListResolver implements Resolve<User[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
     // This automatically subscribe to the .getUser() method so we don't need to
     // subscribe this ourselves.
-    return this.userService.getUsers()
+    return this.userService.getUsers(this.pageNumber, this.pageSize)
       // We want to catch any errors that occur so that we can so that we can redirectly
       // use a back and also get back of the method as well
       .pipe(
         catchError(error => {
           this.alertify.error('Problem retrieving data');
           // We will navigate them back to the /members page
-          this.router.navigate(['/home']);
+          this.router.navigate(['/members/edit']);
           // We will return an observable of type null by using the of() method from 'rxjs'
           return of(null);
         })

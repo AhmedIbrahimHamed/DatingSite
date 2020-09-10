@@ -13,8 +13,8 @@ namespace DatingSite.API.Helpers {
         private int pageSize = 10;
 
         public int PageSize {
-            get { return pageSize = 10; }
-            set { pageSize = (value > MaxPageSize) ? MaxPageSize : 10; }
+            get { return pageSize; }
+            set { pageSize = (value >= MaxPageSize) ? MaxPageSize : value; }
         }
 
 
