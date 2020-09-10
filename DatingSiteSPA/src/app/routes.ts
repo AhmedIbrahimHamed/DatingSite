@@ -10,9 +10,10 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver.ts';
 import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.guard.ts';
+import { HomeGuard } from './_gaurds/home.guard';
 
 export const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canActivate: [HomeGuard]},
   { path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
