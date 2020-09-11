@@ -19,6 +19,7 @@ namespace DatingSite.API.Profiles {
                 .ForMember(destination => destination.RecipientPhotoUrl, options => {
                     options.MapFrom(source => source.Recipient.Photos.FirstOrDefault(p => p.IsMain).Url);
                 });
+            CreateMap<MessageForReadDto, Message>().ReverseMap();
         }
     }
 }

@@ -142,6 +142,10 @@ namespace DatingSite.API.Data {
 
             return messages;
         }
+
+        public void UpdateMessageIsRead(int userId, int recipientId) {
+            
+        }
     }
 }
  

@@ -4,6 +4,7 @@ using DatingSite.API.Dtos;
 using DatingSite.API.Helpers;
 using DatingSite.API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,16 @@ namespace DatingSite.API.Controllers {
                 return Unauthorized();
             }
 
+            var sender = await _repo.GetUser(userId);
+
             var messageFromRepo = await _repo.GetMessage(id);
+
 
             if (messageFromRepo == null) {
                 return NotFound();
             }
 
-            var messageForReturn = _mapper.Map<MessageForReturnListsDto>(messageFromRepo);
+            var messageForReturn = _mapper.Map<MessageForReturnDto>(messageFromRepo);
 
             return Ok(messageForReturn);
         }
@@ -84,7 +88,7 @@ namespace DatingSite.API.Controllers {
             messageForCreationDto.SenderId = userId;
 
             var recipient = await _repo.GetUser(messageForCreationDto.RecipientId);
-            var sender = await _repo.GetUser(messageForCreationDto.SenderId);
+            var sender = await _repo.GetUser(userId);
 
             if (recipient == null) {
                 return BadRequest("Couldn't find recipient user");
@@ -132,7 +136,38 @@ namespace DatingSite.API.Controllers {
             throw new Exception("Error deleting the message.");
         }
 
+        [HttpPatch("{id}/read")]
+        public async Task<IActionResult> MarkMessageAsRead(int userId, int id,[FromBody] JsonPatchDocument<MessageForReadDto> patchDocument) {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
 
+            var messageFromRepo = await _repo.GetMessage(id);
+
+            if (messageFromRepo.RecipientId != userId ) {
+                return Unauthorized();
+            }
+
+            var messageForUpdateToPatch = _mapper.Map<MessageForReadDto>(messageFromRepo);
+
+            messageForUpdateToPatch.DateRead = DateTime.Now;
+
+            patchDocument.ApplyTo(messageForUpdateToPatch, ModelState);
+
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            _mapper.Map(messageForUpdateToPatch, messageFromRepo);
+
+            _repo.UpdateMessageIsRead(userId, id);
+
+            if (await _repo.SaveAll()) {
+                return NoContent();
+            }
+
+            throw new Exception("Error updating the message.");
+        }
 
     }
 }

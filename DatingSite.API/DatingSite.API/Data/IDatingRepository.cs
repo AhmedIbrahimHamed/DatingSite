@@ -29,5 +29,7 @@ namespace DatingSite.API.Data {
 
         Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId);
 
+        void UpdateMessageIsRead(int userId, int recipientId);
+
     }
 }

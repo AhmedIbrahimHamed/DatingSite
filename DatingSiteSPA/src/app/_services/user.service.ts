@@ -8,15 +8,22 @@ import { map } from 'rxjs/operators';
 import { Message } from '../_models/message';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   baseUrl = environment.apiUrl + '/api/users/';
 
   constructor(private http: HttpClient) {}
 
-  getUsers(page?: string, itemsPerPage?: string, userParams?, likesParam?): Observable<PaginatedResult<User[]>> {
-    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
+  getUsers(
+    page?: string,
+    itemsPerPage?: string,
+    userParams?,
+    likesParam?
+  ): Observable<PaginatedResult<User[]>> {
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<
+      User[]
+    >();
 
     let params = new HttpParams();
 
@@ -32,22 +39,27 @@ export class UserService {
       params = params.append('orderBy', userParams.orderBy);
     }
 
-    if ( likesParam === 'Likers') {
+    if (likesParam === 'Likers') {
       params = params.append('likers', 'true');
     }
 
-    if ( likesParam === 'Likees') {
+    if (likesParam === 'Likees') {
       params = params.append('likees', 'true');
     }
 
-    return this.http.get<User[]>(this.baseUrl, {observe: 'response', params})
-      .pipe(map(response => {
-        paginatedResult.result = response.body;
-        if (response.headers.get('Pagination') != null) {
-          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
-        }
-        return paginatedResult;
-      }));
+    return this.http
+      .get<User[]>(this.baseUrl, { observe: 'response', params })
+      .pipe(
+        map((response) => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(
+              response.headers.get('Pagination')
+            );
+          }
+          return paginatedResult;
+        })
+      );
   }
 
   getUser(id: number): Observable<User> {
@@ -59,7 +71,10 @@ export class UserService {
   }
 
   setMainPhoto(userId: number, id: number) {
-    return this.http.post(this.baseUrl + userId + '/photos/' + id + '/setMain', {});
+    return this.http.post(
+      this.baseUrl + userId + '/photos/' + id + '/setMain',
+      {}
+    );
   }
 
   deletePhoto(userId: number, id: number) {
@@ -75,7 +90,9 @@ export class UserService {
   }
 
   getMessages(id: string, page?, itemsPerPage?, messageContainer?) {
-    const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
+    const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<
+      Message[]
+    >();
 
     let params = new HttpParams();
 
@@ -86,13 +103,19 @@ export class UserService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<Message[]>(this.baseUrl + id + '/messages', { observe: 'response', params })
+    return this.http
+      .get<Message[]>(this.baseUrl + id + '/messages', {
+        observe: 'response',
+        params,
+      })
       .pipe(
-        map(response => {
+        map((response) => {
           paginatedResult.result = response.body;
 
           if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+            paginatedResult.pagination = JSON.parse(
+              response.headers.get('Pagination')
+            );
           }
 
           return paginatedResult;
@@ -101,7 +124,9 @@ export class UserService {
   }
 
   getMessageThread(id: number, recipientId: number) {
-    return this.http.get<Message[]>(this.baseUrl + id + '/messages/thread/' + recipientId);
+    return this.http.get<Message[]>(
+      this.baseUrl + id + '/messages/thread/' + recipientId
+    );
   }
 
   sendMessage(id: number, message: Message) {
@@ -112,4 +137,13 @@ export class UserService {
     return this.http.post(this.baseUrl + userId + '/messages/' + id, {});
   }
 
+  markAsRead(userId: number, messageId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    this.http
+      .patch(this.baseUrl + userId + '/messages/' + messageId + '/read',
+        JSON.stringify([{op: 'replace', path: '/isRead', value: 'true'}]),
+        {headers}).subscribe();
+  }
 }
