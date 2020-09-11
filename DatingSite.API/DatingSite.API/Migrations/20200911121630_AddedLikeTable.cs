@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatingSite.API.Migrations
 {
@@ -10,12 +11,14 @@ namespace DatingSite.API.Migrations
                 name: "Likes",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     LikerId = table.Column<int>(nullable: false),
                     LikeeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Likes", x => new { x.LikerId, x.LikeeId });
+                    table.PrimaryKey("PK_Likes", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Likes_Users_LikeeId",
                         column: x => x.LikeeId,
@@ -34,6 +37,11 @@ namespace DatingSite.API.Migrations
                 name: "IX_Likes_LikeeId",
                 table: "Likes",
                 column: "LikeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_LikerId",
+                table: "Likes",
+                column: "LikerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

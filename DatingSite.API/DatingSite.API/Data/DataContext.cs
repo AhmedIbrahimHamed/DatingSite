@@ -20,9 +20,7 @@ namespace DatingSite.API.Data {
         public DbSet<Like> Likes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Like>()
-                .HasKey(k => new { k.LikerId, k.LikeeId });
-
+            
             modelBuilder.Entity<Like>()
                 .HasOne(u => u.Likee)
                 .WithMany(u => u.Likers)

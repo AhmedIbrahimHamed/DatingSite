@@ -39,5 +39,9 @@ namespace DatingSite.API.Models {
 
         public ICollection<Like> Likees { get; set; }
 
+        //public ICollection<Message> MessagesSend { get; set; }
+
+        //public ICollection<Message> MessagesReceived { get; set; }
+
     }
 }

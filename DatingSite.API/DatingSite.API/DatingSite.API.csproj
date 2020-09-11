@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20200905055932_newMig.Designer.cs" />
     <Compile Remove="Migrations\20200905060020_AddedColumnUser.cs" />
     <Compile Remove="Migrations\20200905060020_AddedColumnUser.Designer.cs" />
+    <Compile Remove="Migrations\20200910232357_AddedLikeTable.cs" />
+    <Compile Remove="Migrations\20200910232357_AddedLikeTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

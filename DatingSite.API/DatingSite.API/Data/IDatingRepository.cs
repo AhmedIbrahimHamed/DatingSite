@@ -23,6 +23,5 @@ namespace DatingSite.API.Data {
 
         Task<Like> GetLike(int userId, int recipentId);
 
-        void DeleteLike(Like like);
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 namespace DatingSite.API.Models {
     public class Like {
 
+        public int Id { get; set; }
+
         public int LikerId { get; set; }
 
         public int LikeeId { get; set; }

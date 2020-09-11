@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingSite.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200910232357_AddedLikeTable")]
+    [Migration("20200911121630_AddedLikeTable")]
     partial class AddedLikeTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,13 +23,19 @@ namespace DatingSite.API.Migrations
 
             modelBuilder.Entity("DatingSite.API.Models.Like", b =>
                 {
-                    b.Property<int>("LikerId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LikeeId");
 
-                    b.HasKey("LikerId", "LikeeId");
+                    b.Property<int>("LikerId");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("LikeeId");
+
+                    b.HasIndex("LikerId");
 
                     b.ToTable("Likes");
                 });

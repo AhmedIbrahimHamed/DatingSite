@@ -118,14 +118,13 @@ namespace DatingSite.API.Controllers {
                 return NotFound();
             }
 
-            like = new Like() {
-                LikerId = id,
-                LikeeId = recipientId
-            };
+            _repo.Delete(like);
 
-            _repo.DeleteLike(like);
+            if (await _repo.SaveAll()) {
+                return NoContent();
+            }
 
-            return Ok();
+            return BadRequest("Failed to Unlike user");
         }
 
     }
