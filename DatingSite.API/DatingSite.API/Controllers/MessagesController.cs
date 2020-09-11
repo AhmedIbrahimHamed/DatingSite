@@ -42,6 +42,24 @@ namespace DatingSite.API.Controllers {
             return Ok(messageForReturn);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userId,[FromQuery] MessageParams messageParams) {
+            if (userId != Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+
+            messageParams.UserId = userId;
+
+            var messagesFromRepo = await _repo.GetMessagesForUser(messageParams);
+
+            var messagesToReturn = _mapper.Map<IEnumerable<MessageForReturnListsDto>>(messagesFromRepo);
+
+            Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize,
+                messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
+
+            return Ok(messagesToReturn);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userId, MessageForCreationDto messageForCreationDto) {
             if (userId != Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
@@ -70,5 +88,6 @@ namespace DatingSite.API.Controllers {
 
             throw new Exception("Creating the message failed on save");
         }
+
     }
 }

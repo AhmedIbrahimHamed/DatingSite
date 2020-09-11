@@ -12,6 +12,13 @@ namespace DatingSite.API.Profiles {
         public MessageProfile() {
             CreateMap<Message, MessageForReturnDto>();
             CreateMap<MessageForCreationDto, Message>();
+            CreateMap<Message, MessageForReturnListsDto>()
+                .ForMember(destination => destination.SenderPhotoUrl, options => {
+                    options.MapFrom(source => source.Sender.Photos.FirstOrDefault(p => p.IsMain).Url);
+                })
+                .ForMember(destination => destination.RecipientPhotoUrl, options => {
+                    options.MapFrom(source => source.Recipient.Photos.FirstOrDefault(p => p.IsMain).Url);
+                });
         }
     }
 }
