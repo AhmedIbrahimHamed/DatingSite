@@ -23,5 +23,11 @@ namespace DatingSite.API.Data {
 
         Task<Like> GetLike(int userId, int recipentId);
 
+        Task<Message> GetMessage(int id);
+
+        Task<PagedList<Message>> GetMessagesForUser();
+
+        Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId);
+
     }
 }
