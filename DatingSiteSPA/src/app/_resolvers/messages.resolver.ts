@@ -15,7 +15,7 @@ import { AuthService } from '../_services/auth.service';
 })
 export class MessagesResolver implements Resolve<Message[]> {
   pageNumber = '1';
-  pageSize = '6';
+  pageSize = '5';
   messageContainer = 'Unread';
 
   constructor(private userService: UserService, private router: Router,
