@@ -23,6 +23,10 @@ namespace DatingSite.API.Data {
             _context.Remove(entity);
         }
 
+        public async Task<Like> GetLike(int userId, int recipentId) {
+            return await _context.Likes.FirstOrDefaultAsync(u => u.LikerId == userId && u.LikeeId == recipentId);
+        }
+
         public async Task<Photo> GetMainPhotoForUser(int userId) {
             return await _context.Photos.Where(p => p.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);
         }
