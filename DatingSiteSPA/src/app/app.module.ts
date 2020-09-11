@@ -37,6 +37,7 @@ import { PhotoEditerComponent } from './members/photo-editer/photo-editer.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -62,7 +63,8 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     MemberDetailsComponent,
     MemberEditComponent,
     PhotoEditerComponent,
-    TimeAgoExtendsPipe
+    TimeAgoExtendsPipe,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,
