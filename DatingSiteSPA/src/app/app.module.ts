@@ -35,6 +35,7 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver.ts';
 import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.guard.ts';
 import { PhotoEditerComponent } from './members/photo-editer/photo-editer.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -93,6 +94,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     MemberDetailResolver,
     MemberListResolver,
     MemberEditResolver,
+    ListsResolver,
     PreventUnsavedChanges,
   ],
   bootstrap: [AppComponent],
