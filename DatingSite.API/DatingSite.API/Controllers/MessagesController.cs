@@ -37,7 +37,7 @@ namespace DatingSite.API.Controllers {
                 return NotFound();
             }
 
-            var messageForReturn = _mapper.Map<MessageForReturnDto>(messageFromRepo);
+            var messageForReturn = _mapper.Map<MessageForReturnListsDto>(messageFromRepo);
 
             return Ok(messageForReturn);
         }
@@ -47,6 +47,8 @@ namespace DatingSite.API.Controllers {
             if (userId != Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
                 return Unauthorized();
             }
+
+           
 
             messageParams.UserId = userId;
 
@@ -93,7 +95,7 @@ namespace DatingSite.API.Controllers {
             _repo.Add(messageEntity);
 
             if (await _repo.SaveAll()) {
-                var messageToReturn = _mapper.Map<MessageForReturnDto>(messageEntity);
+                var messageToReturn = _mapper.Map<MessageForReturnListsDto>(messageEntity);
                 return CreatedAtRoute("GetMessage",
                     new { id = messageEntity.Id },
                     messageToReturn);
