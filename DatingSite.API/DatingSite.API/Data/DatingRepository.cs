@@ -100,5 +100,19 @@ namespace DatingSite.API.Data {
         public async Task<bool> SaveAll() {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async void DeleteLike(Like like) {
+            //var Liker = await _context.Users.FirstOrDefaultAsync(liker => liker.Id == like.LikerId);
+            //var Likee = await _context.Users.FirstOrDefaultAsync(likee => likee.Id == like.LikeeId);
+
+            var likeToRemove = await _context.Likes.Include(l => l.Liker).Include(l => l.Likee).FirstOrDefaultAsync(l => l.LikeeId == like.LikeeId && l.LikerId == like.LikerId);
+
+            _context.Entry(likeToRemove).State = EntityState.Deleted; 
+
+            _context.Remove(likeToRemove);
+
+
+        }
     }
 }
+ 

@@ -22,5 +22,7 @@ namespace DatingSite.API.Data {
         Task<Photo> GetMainPhotoForUser(int userId);
 
         Task<Like> GetLike(int userId, int recipentId);
+
+        void DeleteLike(Like like);
     }
 }

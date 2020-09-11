@@ -102,5 +102,31 @@ namespace DatingSite.API.Controllers {
             return BadRequest("Failed to like user");
         }
 
+        [HttpDelete("{id}/like/{recipientId}")]
+        public async Task<IActionResult> UnlikeUser(int id, int recipientId) {
+            if (id != Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+
+            var like = await _repo.GetLike(id, recipientId);
+
+            if (like == null) {
+                return BadRequest("You don't have a like for this user");
+            }
+
+            if (await _repo.GetUser(recipientId) == null) {
+                return NotFound();
+            }
+
+            like = new Like() {
+                LikerId = id,
+                LikeeId = recipientId
+            };
+
+            _repo.DeleteLike(like);
+
+            return Ok();
+        }
+
     }
 }
