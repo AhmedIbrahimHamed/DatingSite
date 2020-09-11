@@ -56,6 +56,20 @@ namespace DatingSite.API.Data {
                 .OrderByDescending(u => u.LastActive)
                 .AsQueryable();
 
+            if (userParams.Likers) {
+                var userLikers = await GetUserLikes(userParams.UserId,
+                    userParams.Likers);
+
+                users = users.Where(u => userLikers.Contains(u.Id));
+            }
+
+            if (userParams.Likees) {
+                var userLikees = await GetUserLikes(userParams.UserId,
+                    userParams.Likers);
+
+                users = users.Where(u => userLikees.Contains(u.Id));
+            }
+
             if (!string.IsNullOrEmpty(userParams.OrderBy)) {
                 switch (userParams.OrderBy) {
                     case "created":
@@ -68,6 +82,19 @@ namespace DatingSite.API.Data {
             }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
+        }
+
+        private async Task<IEnumerable<int>> GetUserLikes(int id, bool likers) {
+            var user = await _context.Users
+                .Include(u => u.Likers)
+                .Include(u => u.Likees)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (likers) {
+                return user.Likers.Where(u => u.LikeeId == id).Select(u => u.LikerId);
+            }
+
+            return user.Likees.Where(u => u.LikerId == id).Select(u => u.LikeeId);
         }
 
         public async Task<bool> SaveAll() {
