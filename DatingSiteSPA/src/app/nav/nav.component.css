@@ -7,3 +7,14 @@ img{
   border: 2px solid white;
   display: inline;
 }
+
+.collapse-toggler {
+  width: 40px;
+  position: relative;
+}
+
+@media(min-width: 768px) {
+  .collapse-toggler {
+    display: none;
+  }
+}

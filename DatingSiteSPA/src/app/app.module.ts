@@ -12,6 +12,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -79,6 +80,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     TabsModule.forRoot(),
+    CollapseModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {

@@ -1,9 +1,19 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">DatingSite</a>
+    <div >
+      <button *ngIf="!loggedIn()" type="button" class="btn btn-primary collapse-toggler mr-3" (click)="isLoginCollapsed = !isLoginCollapsed"
+        [attr.aria-expanded]="!isLoginCollapsed" aria-controls="collapseBasic"><i class="fa fa-bars fa-lg"></i>
+      </button>
 
-    <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
+      <button *ngIf="loggedIn()" type="button" class="btn btn-primary collapse-toggler mr-3" (click)="isHomeCollapsed = !isHomeCollapsed"
+      [attr.aria-expanded]="!isHomeCollapsed" aria-controls="collapseBasic"><i class="fa fa-bars fa-lg"></i>
+    </button>
+      <a class="navbar-brand" [routerLink]="['/home']">DatingSite</a>
+    </div>
+    
+
+    <ul *ngIf="loggedIn()" [collapse]="isHomeCollapsed" [isAnimated]="true" class="navbar-nav mr-auto order-2 col-12 col-md-auto order-md-0">
       <li class="nav-item active" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
@@ -30,7 +40,12 @@
       </div>
     </div>
   
-    <form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-inline my-2 my-lg-0">
+    <form [collapse]="isLoginCollapsed"
+      [isAnimated]="true"
+      *ngIf="!loggedIn()"
+      #loginForm="ngForm"
+      (ngSubmit)="login(loginForm)" 
+      class="form-inline my-2 my-lg-0 col-12 col-md-auto">
       <input class="form-control mr-sm-2"
         type="text"
         name="username"

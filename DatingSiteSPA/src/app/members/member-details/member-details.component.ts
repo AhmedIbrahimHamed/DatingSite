@@ -32,7 +32,10 @@ export class MemberDetailsComponent implements OnInit {
     });
 
     this.route.queryParams.subscribe(params => {
-      const selectedTab = params.tab;
+      let selectedTab = params.tab;
+      if (selectedTab === undefined ) {
+        selectedTab = 0;
+      }
       this.selectTab(selectedTab);
     });
 

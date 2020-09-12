@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/Alertify.service';
@@ -13,7 +13,18 @@ import { Router } from '@angular/router';
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class NavComponent implements OnInit {
+  isLoginCollapsed = false;
+  isHomeCollapsed = true;
   photoUrl: string;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+  const innerWidth = event.target.innerWidth;
+  if (innerWidth > 768) {
+    this.isLoginCollapsed = false;
+    this.isHomeCollapsed = true;
+  }
+}
 
   constructor(public authService: AuthService,
               private alertify: AlertifyService, private router: Router) { }
