@@ -35,7 +35,7 @@
                 <strong class="ml-2">{{message.senderKnownAs}}</strong>
           </div>
           <div *ngIf="messageContainer == 'Outbox'">
-                <img src="{{message.senderPhotoUrl ||  '../../../assets/user.png'}}" class="img-circle rounded-circle">
+                <img src="{{message.recipientPhotoUrl ||  '../../../assets/user.png'}}" class="img-circle rounded-circle">
                 <strong class="ml-2"> {{message.recipientKnownAs}}</strong>
           </div>
         </td>
