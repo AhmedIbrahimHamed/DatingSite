@@ -33,11 +33,6 @@
   overflow-y: auto;
 }
 
-.photos-container {
-  height: 100vh;
-  overflow-y: auto;
-}
-
 .ngx-gallery {
   display      : inline-block;
   margin-bottom: 20px;
