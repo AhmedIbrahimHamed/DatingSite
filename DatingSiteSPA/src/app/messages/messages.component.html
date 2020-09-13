@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 messages-container">
   <div class="row">
     <div class="btn-group ml-2 ml-sm-0">
       <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Unread" (click)="loadMessages()">
@@ -31,11 +31,11 @@
         <td>{{message.content}}</td>
         <td>
           <div *ngIf="messageContainer != 'Outbox'">
-                <img src={{message?.senderPhotoUrl}} class="img-circle rounded-circle">
+                <img src="{{message.senderPhotoUrl ||  '../../../assets/user.png'}}" class="img-circle rounded-circle">
                 <strong class="ml-2">{{message.senderKnownAs}}</strong>
           </div>
           <div *ngIf="messageContainer == 'Outbox'">
-                <img src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle">
+                <img src="{{message.senderPhotoUrl ||  '../../../assets/user.png'}}" class="img-circle rounded-circle">
                 <strong class="ml-2"> {{message.recipientKnownAs}}</strong>
           </div>
         </td>

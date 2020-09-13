@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class NavComponent implements OnInit {
-  isLoginCollapsed = false;
-  isHomeCollapsed = true;
+  isLoginCollapsed: boolean;
+  isHomeCollapsed: boolean;
+  showDefaultHome: boolean;
+
   photoUrl: string;
 
   @HostListener('window:resize', ['$event'])
@@ -23,6 +25,10 @@ export class NavComponent implements OnInit {
   if (innerWidth > 768) {
     this.isLoginCollapsed = false;
     this.isHomeCollapsed = true;
+    this.showDefaultHome = true;
+  } else {
+    this.showDefaultHome = false;
+    this.isLoginCollapsed = true;
   }
 }
 
@@ -32,6 +38,13 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+
+    const windowWidth = window.innerWidth;
+
+    this.isLoginCollapsed = window.innerWidth > 786 ? false : true;
+    this.isHomeCollapsed = true;
+    this.showDefaultHome = window.innerWidth > 786 ? true : false;
+
   }
 
   loggedIn() {

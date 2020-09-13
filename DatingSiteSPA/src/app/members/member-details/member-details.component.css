@@ -18,6 +18,26 @@
   border-top      : none;
 }
 
+.description-container {
+  height: 35vh;
+  overflow-y: auto;
+}
+
+.lookingfor-container {
+  height: 35vh;
+  overflow-y: auto;
+}
+
+.interests-container {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.photos-container {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .ngx-gallery {
   display      : inline-block;
   margin-bottom: 20px;

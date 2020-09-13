@@ -44,19 +44,24 @@
       <div class="tab-panel">
         <tabset class="member-tabset" #memberTabs>
           <tab heading="About {{user.knownAs}}">
-            <h4>Description</h4>
-            <p>{{user.introduction}}</p>
-            <h4>Looking For</h4>
-            <p>{{user.lookingFor}}</p>
+            <h4>Description :</h4>
+            <div class="description-container">
+              <p>{{user.introduction}}</p>
+            </div>
+            <h4 class="mt-3">Looking For :</h4>
+            <div class="lookingfor-container">
+              <p>{{user.lookingFor}}</p>
+            </div>
           </tab>
           
           <tab heading="Interests">
-            <h4>Interests</h4>
-            <p>{{user.interests}}</p>
+            <h4>Interests :</h4>
+            <div class="interests-container">
+              <p>{{user.interests}}</p>
+            </div>
           </tab>
 
           <tab heading="Photos">
-            <!-- <p>Photos goes here!</p>  -->
             <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
           </tab>
 

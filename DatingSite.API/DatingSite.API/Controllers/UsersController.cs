@@ -49,6 +49,10 @@ namespace DatingSite.API.Controllers {
         [HttpGet("{id}", Name = "GetUser"),]
         public async Task<IActionResult> GetUser(int id) {
             var user = await _repo.GetUser(id);
+            
+            if (user == null) {
+                return NotFound("User wasn't found!");
+            }
 
             var userToReturn = _mapper.Map<UserForDetailsDto>(user);
 

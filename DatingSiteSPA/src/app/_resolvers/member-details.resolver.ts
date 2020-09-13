@@ -25,7 +25,7 @@ export class MemberDetailResolver implements Resolve<User> {
       // use a back and also get back of the method as well
       .pipe(
         catchError(error => {
-          this.alertify.error('Problem retrieving data');
+          this.alertify.error(error);
           // We will navigate them back to the /members page
           this.router.navigate(['/members']);
           // We will return an observable of type null by using the of() method from 'rxjs'
